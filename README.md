@@ -584,7 +584,7 @@ python zip_cracker.py file.zip smaller_dict_ab
 ### General Questions
 
 **Q: Is this tool legal to use?**
-A: Yes, for your own files or with explicit permission. See [Legal Disclaimer](#-legal-disclaimer).
+A: Yes, for your own files or with explicit permission. See [Legal Disclaimer](#disclaimer).
 
 **Q: How long will it take to crack my ZIP?**
 A: Depends on password complexity and length. A 4-digit PIN takes seconds, an 8-character random password could take years.
