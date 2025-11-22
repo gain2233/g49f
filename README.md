@@ -17,10 +17,10 @@
 ## 📋 Table of Contents
 
 - [Features](#features)
-- [How It Works](#-how-it-works)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Usage Guide](#-usage-guide)
+- [How It Works](#how-it-works)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage Guide](#usage-guide)
   - [Dictionary Attack](#1-dictionary-attack)
   - [Mask Attack](#2-mask-attack)
   - [CRC32 Collision Attack](#3-crc32-collision-attack)
