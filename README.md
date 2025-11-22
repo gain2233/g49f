@@ -29,9 +29,9 @@
 - [Technical Details](#technical-details)
 - [Troubleshooting](#troubleshooting)
 - [FAQ](#-faq)
-- [Contributing](#-contributing)
-- [Legal Disclaimer](#-legal-disclaimer)
-- [License](#-license)
+- [Contributing](#contributing)
+- [Legal Disclaimer](#disclaimer)
+- [License](#license)
 
 ---
 
