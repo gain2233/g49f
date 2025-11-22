@@ -8,7 +8,7 @@
 
 **A powerful, multi-threaded ZIP password cracking tool with support for dictionary attacks, mask attacks, CRC32 collision attacks, and AES encryption.**
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Examples](#-examples) • [Advanced](#-advanced-usage) • [FAQ](#-faq)
+[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Examples](#examples) • [Advanced](#advanced-usage) • [FAQ](#-faq)
 
 </div>
 
