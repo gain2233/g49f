@@ -4,7 +4,7 @@
 
 ![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
+![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)
 
 **A powerful, multi-threaded ZIP password cracking tool with support for dictionary attacks, mask attacks, CRC32 collision attacks, and AES encryption.**
 
