@@ -1,4 +1,4 @@
-# 🔓 ZIP Cracker - Advanced Password Recovery Tool
+# ZIP Cracker - Advanced Password Recovery Tool
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ## 📋 Table of Contents
 
-- [Features](#-features)
+- [Features](#features)
 - [How It Works](#-how-it-works)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
@@ -35,34 +35,34 @@
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎯 Core Features
+### Core Features
 
-- **🔐 Multiple Encryption Support**
+- **Multiple Encryption Support**
   - Traditional ZipCrypto encryption
   - AES-128/192/256 encryption (with pyzipper)
   - Pseudo-encryption detection and automatic fix
 
-- **💪 Multiple Attack Modes**
+- **Multiple Attack Modes**
   - Dictionary attack (single file or directory)
   - Mask attack (custom pattern-based)
   - CRC32 collision attack (for small files)
   - Built-in numeric dictionary (1-6 digits)
 
-- **⚡ High Performance**
+- **High Performance**
   - Multi-threaded architecture
   - Dynamic thread pool optimization
   - Memory-efficient chunk processing
   - Automatic CPU core detection
 
-- **📊 Real-Time Monitoring**
+- **Real-Time Monitoring**
   - Live progress tracking
   - Speed calculation (passwords/second)
   - Estimated time remaining
   - Current password display
 
-- **🛡️ Robust Error Handling**
+- **Robust Error Handling**
   - Thread-safe operations
   - Graceful error recovery
   - Detailed error messages
@@ -70,7 +70,7 @@
 
 ---
 
-## 🔍 How It Works
+## How It Works
 
 ### Attack Workflow
 
@@ -131,7 +131,7 @@
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -142,7 +142,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/zip-cracker.git
+- Download the project as zip to your computer
+
 cd zip-cracker
 
 # Basic usage (ZipCrypto support only)
@@ -152,17 +153,8 @@ python zip_cracker.py
 ### Full Installation (with AES support)
 
 ```bash
-# Install pyzipper for AES encryption support
-pip install pyzipper
-
-# Or install all dependencies
+# install all dependencies
 pip install -r requirements.txt
-```
-
-### Create requirements.txt
-
-```txt
-pyzipper>=0.3.6
 ```
 
 ### Verify Installation
@@ -173,7 +165,7 @@ python zip_cracker.py --help
 
 ---
 
-## 🎯 Quick Start
+## Quick Start
 
 ### 1. Simple Password Recovery
 
@@ -205,7 +197,7 @@ python zip_cracker.py protected.zip -o my_files
 
 ---
 
-## 📚 Usage Guide
+## Usage Guide
 
 ### 1. Dictionary Attack
 
@@ -354,7 +346,7 @@ python zip_cracker.py data.zip
 
 ---
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Combining Options
 
@@ -390,7 +382,7 @@ for %%f in (*.zip) do (
 
 ---
 
-## ⚡ Performance Optimization
+## Performance Optimization
 
 ### Thread Count
 
@@ -434,7 +426,7 @@ python zip_cracker.py file.zip huge_dictionary.txt
 
 ---
 
-## 🔬 Technical Details
+## Technical Details
 
 ### Architecture
 
@@ -513,7 +505,7 @@ class AttackStatus:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -641,27 +633,7 @@ A: Think about the password pattern:
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-### Reporting Bugs
-
-1. Check if the issue already exists
-2. Provide detailed information:
-   - Python version
-   - Operating system
-   - Full error message
-   - Steps to reproduce
-
-### Suggesting Features
-
-Open an issue with:
-- Clear description of the feature
-- Use cases
-- Expected behavior
-
-### Code Contributions
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -669,109 +641,26 @@ Open an issue with:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Development Setup
-
-```bash
-# Clone your fork
-git clone https://github.com/yourusername/zip-cracker.git
-cd zip-cracker
-
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-python -m pytest tests/
-
-# Check code style
-flake8 zip_cracker.py
-```
-
 ---
 
-## ⚖️ Legal Disclaimer
-
-### Important Notice
+## Disclaimer
 
 This tool is provided for **educational and legitimate purposes only**.
-
-### ✅ Acceptable Use
-
-- Recovering passwords for your own files
-- Authorized security testing
-- Educational research
-- Forensic investigations with proper authorization
-
-### ❌ Prohibited Use
-
-- Unauthorized access to others' files
-- Any illegal activities
-- Circumventing security without permission
-- Violating terms of service
 
 ### Responsibility
 
 **Users are solely responsible for their actions.** The authors and contributors:
 - Assume no liability for misuse
-- Do not endorse illegal activities
 - Provide this tool "as is" without warranties
 
-### Legal Consequences
+---
 
-Unauthorized password cracking may violate:
-- Computer Fraud and Abuse Act (USA)
-- Computer Misuse Act (UK)
-- Similar laws in other jurisdictions
+## License
 
-**Always obtain proper authorization before use.**
+This project is licensed under the MIT License. For more information, see the [LICENSE file](LICENSE).
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see below for details:
-
-```
-MIT License
-
-Copyright (c) 2025 Asaotomo (Hx0 Team)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
-
-## 🙏 Acknowledgments
-
-- **Hx0 Team** - Original concept and development
-- **pyzipper** - AES encryption support
-- **Python Community** - Excellent libraries and tools
-- **Security Researchers** - Cryptographic knowledge sharing
-
----
-
-## 📞 Contact & Support
-
-### Getting Help
-
-- **Issues:** [GitHub Issues](https://github.com/yourusername/zip-cracker/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/zip-cracker/discussions)
-- **Email:** your.email@example.com
 
 ### Stay Updated
 
@@ -781,21 +670,9 @@ SOFTWARE.
 
 ---
 
-## 📊 Project Stats
-
-![GitHub Stars](https://img.shields.io/github/stars/yourusername/zip-cracker?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/yourusername/zip-cracker?style=social)
-![GitHub Issues](https://img.shields.io/github/issues/yourusername/zip-cracker)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/yourusername/zip-cracker)
-
----
-
 <div align="center">
 
-**Made with ❤️ by Hx0 Team**
+**Made with ❤️ by rebnX**
 
 If this tool helped you, consider giving it a ⭐!
-
-[Report Bug](https://github.com/yourusername/zip-cracker/issues) • [Request Feature](https://github.com/yourusername/zip-cracker/issues) • [Contribute](https://github.com/yourusername/zip-cracker/pulls)
-
 </div>
