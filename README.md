@@ -29,8 +29,8 @@
 - [Evasion Techniques](#evasion-techniques)
 - [Advanced Usage](#advanced-usage)
 - [Troubleshooting](#troubleshooting)
-- [Disclaimer](#️disclaimer)
-- [License](#-license)
+- [Disclaimer](#disclaimer)
+- [License](#license)
 
 ---
 
