@@ -9,7 +9,7 @@
 
 **A simple yet effective XOR-encrypted shellcode loader for Windows with Python encryption utility**
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#detailed-usage) • [How It Works](#-how-it-works)
+[Features](#features) • [Installation](#installation) • [Usage](#detailed-usage) • [How It Works](#how-it-works)
 
 </div>
 
