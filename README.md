@@ -452,7 +452,7 @@ VirtualProtect(allocatedMemory, size, PAGE_EXECUTE_READ, &old);
 
 ---
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Using with Metasploit
 
@@ -600,7 +600,7 @@ This project is licensed under the MIT License. For more information, see the [L
 
 <div align="center">
 
-[⬆ Back to Top](#-xor-shellcode-loader)
+[⬆ Back to Top](#xor-shellcode-loader)
 
 </div>
 
