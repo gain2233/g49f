@@ -1,4 +1,4 @@
-# 🔐 XOR Shellcode Loader
+# Shellcode Loader
 
 <div align="center">
 
@@ -9,55 +9,48 @@
 
 **A simple yet effective XOR-encrypted shellcode loader for Windows with Python encryption utility**
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [How It Works](#-how-it-works) • [Security](#-security) • [FAQ](#-faq)
+[Features](#-features) • [Installation](#-installation) • [Usage](#detailed-usage) • [How It Works](#-how-it-works)
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Detailed Usage](#-detailed-usage)
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Detailed Usage](#detailed-usage)
   - [Encrypting Payloads](#1-encrypting-payloads)
   - [Loading Payloads](#2-loading-payloads)
   - [Customization](#3-customization)
-- [How It Works](#-how-it-works)
-- [Security Considerations](#-security-considerations)
-- [Evasion Techniques](#-evasion-techniques)
-- [Advanced Usage](#-advanced-usage)
-- [Troubleshooting](#-troubleshooting)
-- [FAQ](#-faq)
-- [Legal Disclaimer](#️-legal-disclaimer)
-- [Contributing](#-contributing)
+- [How It Works](#how-it-works)
+- [Evasion Techniques](#evasion-techniques)
+- [Advanced Usage](#advanced-usage)
+- [Troubleshooting](#troubleshooting)
+- [Disclaimer](#️disclaimer)
 - [License](#-license)
 
 ---
 
-## 🎯 Overview
+## Overview
 
 This project implements a basic **XOR-encrypted shellcode loader** for Windows systems. It consists of two components:
 
 1. **Python Encryption Tool** (`xorencrypt.py`) - Encrypts raw shellcode using XOR cipher
-2. **C++ Loader** (`code.cpp`) - Decrypts and executes the encrypted payload in memory
+2. **C++ Loader** (`Loader.cpp`) - Decrypts and executes the encrypted payload in memory
 
 The loader demonstrates fundamental techniques used in malware development and red team operations, including:
 - Memory allocation and manipulation
-- XOR encryption/decryption
+- XOR encryption/decryption (can be changed)
 - In-memory code execution
 - Thread-based payload execution
-
-> ⚠️ **Educational Purpose Only**: This tool is designed for security research, penetration testing, and educational purposes. See [Legal Disclaimer](#️-legal-disclaimer).
-
 ---
 
-## ✨ Features
+## Features
 
-### 🔑 Core Capabilities
+### Core Capabilities
 
 - **XOR Encryption**: Simple yet effective obfuscation technique
 - **In-Memory Execution**: Payload runs entirely in memory without touching disk
@@ -67,7 +60,7 @@ The loader demonstrates fundamental techniques used in malware development and r
 - **File-Based Loading**: Reads encrypted payload from external file
 - **Minimal Dependencies**: Uses only Windows API and standard libraries
 
-### 🛡️ Evasion Features
+### Evasion Features
 
 - **Static Analysis Evasion**: Payload is encrypted on disk
 - **Simple Obfuscation**: XOR cipher prevents basic signature detection
@@ -76,61 +69,7 @@ The loader demonstrates fundamental techniques used in malware development and r
 
 ---
 
-## 🏗️ Architecture
-
-### Workflow Overview
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Payload Preparation                       │
-│                                                              │
-│  [Raw Shellcode]  ──────────────────────────────────────┐  │
-│   (shellcode.bin)                                        │  │
-│                                                          │  │
-│                          ▼                               │  │
-│                  ┌───────────────┐                       │  │
-│                  │ xorencrypt.py │                       │  │
-│                  │               │                       │  │
-│                  │ XOR Cipher    │                       │  │
-│                  │ Key: "key"    │                       │  │
-│                  └───────────────┘                       │  │
-│                          │                               │  │
-│                          ▼                               │  │
-│              [Encrypted Payload]                         │  │
-│               (user.dat)                                 │  │
-└──────────────────────────────────────────────────────────┘  │
-                           │                                  │
-                           ▼                                  │
-┌─────────────────────────────────────────────────────────────┐
-│                   Runtime Execution                         │
-│                                                             │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │              C++ Loader (code.cpp)                   │  │
-│  │                                                      │  │
-│  │  1. Open File ──────► user.dat                      │  │
-│  │                                                      │  │
-│  │  2. Allocate Memory ─► VirtualAlloc (RW)            │  │
-│  │                                                      │  │
-│  │  3. Read File ──────► Load into memory              │  │
-│  │                                                      │  │
-│  │  4. Decrypt ────────► XOR with "key"                │  │
-│  │                                                      │  │
-│  │  5. Set Protection ─► VirtualProtect (RX)           │  │
-│  │                                                      │  │
-│  │  6. Create Thread ──► Execute shellcode             │  │
-│  │                                                      │  │
-│  │  7. Wait ───────────► WaitForSingleObject           │  │
-│  └──────────────────────────────────────────────────────┘  │
-│                          │                                  │
-│                          ▼                                  │
-│                  [Shellcode Execution]                      │
-│                  (In-Memory Thread)                         │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -139,51 +78,24 @@ The loader demonstrates fundamental techniques used in malware development and r
 - No external dependencies
 
 **For C++ Loader:**
-- Windows OS (Windows 7+, Windows Server 2008+)
-- Visual Studio 2017+ or MinGW-w64
+- Windows OS
+- Visual Studio 2022
 - Windows SDK
 
 ### Building the Loader
 
-#### Using Visual Studio
+#### Visual Studio
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/xor-shellcode-loader.git
-cd xor-shellcode-loader
-
-# Open Visual Studio Developer Command Prompt
-cl.exe code.cpp /EHsc /Fe:loader.exe
-
-# Or use CMake
-mkdir build && cd build
-cmake ..
-cmake --build .
-```
-
-#### Using MinGW-w64
-
-```bash
-# Compile with g++
-g++ code.cpp -o loader.exe -static-libgcc -static-libstdc++
-
-# With optimization
-g++ code.cpp -o loader.exe -O2 -s -static
-```
-
-#### CMakeLists.txt Example
-
-```cmake
-cmake_minimum_required(VERSION 3.10)
-project(XORShellcodeLoader)
-
-set(CMAKE_CXX_STANDARD 17)
-add_executable(loader code.cpp)
+- Download the project as zip to your computer
+- Open Visual Studio
+- Select **Build Solution** from the **Build** menu.
 ```
 
 ---
 
-## 🎯 Quick Start
+## Quick Start
 
 ### Step 1: Generate Shellcode
 
@@ -216,19 +128,19 @@ python xorencrypt.py shellcode.bin
 # Rename the encrypted file to user.dat
 mv shellcode_encrypted.bin user.dat
 
-# Place in the same directory as loader.exe
+# Place in the same directory as Loader.exe
 ```
 
 ### Step 4: Execute
 
 ```bash
-# Run the loader
-loader.exe
+# Run the Loader
+Loader.exe
 ```
 
 ---
 
-## 📚 Detailed Usage
+## Detailed Usage
 
 ### 1. Encrypting Payloads
 
@@ -270,7 +182,7 @@ print(f"Encrypted: {os.path.getsize('shellcode_encrypted.bin')} bytes")
 
 The loader expects:
 - **Filename**: `user.dat` (hardcoded)
-- **Location**: Same directory as `loader.exe`
+- **Location**: Same directory as `Loader.exe`
 - **Format**: Raw XOR-encrypted binary
 
 #### Execution Flow
@@ -298,6 +210,7 @@ The loader provides clear error messages:
 | `Failed to change memory protection` | DEP conflict | Check DEP settings |
 | `Failed to create execution thread` | Thread creation error | Check system resources |
 
+
 ---
 
 ### 3. Customization
@@ -310,7 +223,7 @@ The loader provides clear error messages:
 key = b"YourCustomKey123"
 ```
 
-**In C++ (`code.cpp`):**
+**In C++ (`Loader.cpp`):**
 ```cpp
 // Line 28 - Must match Python key
 const char xorKey[] = "YourCustomKey123";
@@ -320,7 +233,7 @@ const char xorKey[] = "YourCustomKey123";
 
 #### Changing the Payload Filename
 
-**In C++ (`code.cpp`):**
+**In C++ (`Loader.cpp`):**
 ```cpp
 // Line 31 - Change filename
 fileHandle = CreateFileA(
@@ -355,9 +268,15 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 
+### Preview
+
+
+![bypassav](https://github.com/user-attachments/assets/5ddb30a3-1989-412d-8887-0d55dd3d50a1)
+
+
 ---
 
-## 🔬 How It Works
+## How It Works
 
 ### Python Encryption Tool
 
@@ -496,47 +415,7 @@ Waits indefinitely for the shellcode thread to complete.
 
 ---
 
-## 🛡️ Security Considerations
-
-### Current Security Level
-
-This implementation provides **BASIC** evasion against:
-- ✅ Static file analysis (payload is encrypted)
-- ✅ Simple signature-based detection
-- ✅ Basic string searches
-
-It does **NOT** evade:
-- ❌ Behavior-based detection
-- ❌ Memory scanners
-- ❌ Advanced EDR/AV solutions
-- ❌ Sandbox analysis
-- ❌ YARA rules for API patterns
-
-### Limitations
-
-#### 1. **Weak Encryption**
-- XOR is easily breakable with known-plaintext attacks
-- Simple key makes brute-force trivial
-- No key derivation function (KDF)
-
-#### 2. **Obvious API Calls**
-- VirtualAlloc, VirtualProtect, CreateThread are heavily monitored
-- Sequence of calls is a well-known pattern
-- No API obfuscation
-
-#### 3. **Static Strings**
-- Filename "user.dat" is hardcoded
-- XOR key is in plaintext
-- Error messages reveal functionality
-
-#### 4. **Memory Artifacts**
-- Shellcode resides in RX memory
-- No memory cleaning after execution
-- Thread creation is logged by ETW
-
----
-
-## 🥷 Evasion Techniques
+## Evasion Techniques
 
 ### Basic Improvements
 
@@ -570,23 +449,6 @@ VirtualProtect(allocatedMemory, size, PAGE_NOACCESS, &old);
 Sleep(1000);
 VirtualProtect(allocatedMemory, size, PAGE_EXECUTE_READ, &old);
 ```
-
-### Advanced Techniques
-
-#### 1. **Process Hollowing**
-Replace legitimate process memory instead of direct execution
-
-#### 2. **APC Injection**
-Use Asynchronous Procedure Calls instead of CreateThread
-
-#### 3. **Module Stomping**
-Overwrite legitimate loaded module memory
-
-#### 4. **Syscalls**
-Direct system calls instead of Windows APIs
-
-#### 5. **Heaven's Gate**
-WoW64 transition for x64 syscalls from x86 process
 
 ---
 
@@ -661,7 +523,7 @@ python xorencrypt.py shellcode.bin
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -702,207 +564,26 @@ bcdedit /set nx AlwaysOff
 - Re-generate and re-encrypt payload
 - Test with simple shellcode (calc.exe)
 
-#### 4. Antivirus Detection
-
-**Cause:** Known API pattern or signature
-
-**Solutions:**
-- Use custom packer/crypter
-- Implement API obfuscation
-- Add junk code for entropy
-- Use different execution method (APC, etc.)
-
-#### 5. Shellcode Doesn't Execute
-
-**Cause:** Incompatible architecture (x86 vs x64)
-
-**Solutions:**
-```bash
-# Match loader architecture to shellcode
-# For x64 shellcode:
-cl.exe code.cpp /Fe:loader_x64.exe
-
-# For x86 shellcode:
-cl.exe code.cpp /Fe:loader_x86.exe /MACHINE:X86
-```
-
 ---
 
-## ❓ FAQ
-
-### General Questions
-
-**Q: Is XOR encryption secure?**
-A: No. XOR is trivially breakable but sufficient for basic AV evasion. For production, use AES-256.
-
-**Q: Why not use stronger encryption?**
-A: Educational purpose. XOR demonstrates the concept simply. Real malware uses AES, ChaCha20, or custom algorithms.
-
-**Q: Can this evade modern EDR?**
-A: No. Modern EDR systems detect behavioral patterns, API calls, and memory anomalies. This is a teaching tool.
-
-**Q: Is this detected by Windows Defender?**
-A: Likely yes. The API call pattern is well-known. Use additional evasion techniques.
-
-### Technical Questions
-
-**Q: Why VirtualAlloc instead of HeapAlloc?**
-A: VirtualAlloc allows specifying memory protection (RWX). HeapAlloc doesn't support execution.
-
-**Q: Why change from RW to RX?**
-A: Modern systems enforce DEP/NX. Memory must be RX (not RWX) for legitimate execution.
-
-**Q: Can I use multiple payloads?**
-A: Yes, modify the code to load multiple files and execute them in sequence or parallel.
-
-**Q: Why use CreateThread instead of direct call?**
-A: Threads provide clean separation. Direct call would transfer control completely.
-
-**Q: What's the maximum payload size?**
-A: Limited by available memory. Typical limits: 2GB on x86, 128TB on x64.
-
-### Operational Questions
-
-**Q: Can this run without admin rights?**
-A: Yes, if UAC allows. VirtualAlloc doesn't require admin in user space.
-
-**Q: Does it leave traces?**
-A: Yes. Process memory, ETW events, file access logs, and thread creation are all logged.
-
-**Q: Can it be run from USB?**
-A: Yes, if AutoRun is enabled or user manually executes it.
-
-**Q: How to make it persistent?**
-A: Add registry keys, scheduled tasks, or service installation. Not covered here.
-
----
-
-## ⚖️ Legal Disclaimer
-
-### ⚠️ IMPORTANT NOTICE
+## Disclaimer
 
 This software is provided for **EDUCATIONAL AND RESEARCH PURPOSES ONLY**.
 
-### ✅ Authorized Use
+---
 
-- Security research in controlled environments
-- Penetration testing with written authorization
-- Academic study of malware techniques
-- Red team operations with proper scope
-- Personal learning and experimentation
 
-### ❌ Prohibited Use
+## License
 
-- Unauthorized access to computer systems
-- Malicious software distribution
-- Cybercrime or illegal activities
-- Attacks on systems without permission
-- Any violation of local, national, or international law
-
-### 📜 Legal Responsibility
-
-**Users of this software agree to:**
-
-1. Obtain explicit written authorization before testing any system
-2. Comply with all applicable laws and regulations
-3. Use this tool ethically and responsibly
-4. Accept full legal responsibility for their actions
-
-**The authors and contributors:**
-
-1. Assume NO liability for misuse of this software
-2. Do NOT condone illegal activities
-3. Provide this tool "AS IS" without warranties
-4. Are NOT responsible for any damages caused
-
-### 🚨 Legal Consequences
-
-Unauthorized use may result in:
-- Criminal prosecution under CFAA (USA), CMA (UK), or local laws
-- Civil lawsuits and financial penalties
-- Imprisonment
-- Loss of professional credentials
-
-**When in doubt, consult a lawyer before use.**
+This project is licensed under the MIT License. For more information, see the [LICENSE file](LICENSE).
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how to help:
-
-### Reporting Bugs
-
-1. Check if issue already exists
-2. Provide detailed information:
-   - OS version
-   - Compiler version
-   - Error messages
-   - Steps to reproduce
-
-### Suggesting Features
-
-Ideas for improvements:
-- Additional encryption algorithms (AES, RC4)
-- Process injection techniques
-- API obfuscation methods
-- AMSI bypass integration
-- ETW patching
-- Reflective DLL loading
-
-### Code Contributions
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
-### Coding Standards
-
-- Use clear variable names
-- Add comments for complex logic
-- Follow existing code style
-- Test on multiple Windows versions
-- Document new features
-
----
-
-## 📄 License
-
-```
-MIT License
-
-Copyright (c) 2025 [Your Name]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
-
-## 🔗 Related Resources
+## Related Resources
 
 ### Learning Materials
 - [Windows API Documentation](https://docs.microsoft.com/en-us/windows/win32/api/)
-- [Shellcode Injection Techniques](https://www.ired.team/)
 - [Malware Development](https://0xpat.github.io/)
-- [Red Team Notes](https://www.ired.team/offensive-security/)
 
 ### Tools
 - [Metasploit Framework](https://www.metasploit.com/)
@@ -917,32 +598,9 @@ SOFTWARE.
 
 ---
 
-## 📞 Contact
-
-- **GitHub Issues:** [Report bugs or request features](https://github.com/yourusername/xor-shellcode-loader/issues)
-- **Discussions:** [Ask questions](https://github.com/yourusername/xor-shellcode-loader/discussions)
-- **Email:** your.email@example.com
-
----
-
-## 🙏 Acknowledgments
-
-- Windows API documentation by Microsoft
-- Security research community
-- Offensive security educators
-- Open-source malware analysis tools
-
----
-
 <div align="center">
-
-**⚠️ USE RESPONSIBLY AND LEGALLY ⚠️**
-
-Made with 🔴 for Security Research
 
 [⬆ Back to Top](#-xor-shellcode-loader)
 
 </div>
 
-
-![bypassav](https://github.com/user-attachments/assets/5ddb30a3-1989-412d-8887-0d55dd3d50a1)
