@@ -184,7 +184,7 @@ PE-Sieve detection requires the `/data 3` parameter to identify implanted PE mod
 | PE-Sieve | Default | 🚨 **DETECTED** | ✅ **EVADED** | ✅ **EVADED** |
 | PE-Sieve | `/data 3` | 🚨 **DETECTED** | ⚠️ **PARTIAL** | ⚠️ **PARTIAL** |
 
-## 🔍 Technical Deep Dive
+## Technical Deep Dive
 
 ### Memory Protection Mechanics
 
