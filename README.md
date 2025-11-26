@@ -1,4 +1,4 @@
-# Shellcode Fluctuation
+# 🔄 Shellcode Fluctuation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://www.microsoft.com/)
@@ -35,12 +35,12 @@
 
 **Shellcode Fluctuation** is an advanced cybersecurity research tool that demonstrates sophisticated memory evasion techniques used in modern malware and red team operations. The tool implements a novel approach to hiding shellcode in memory by:
 
-- **🔐 Dynamic Encryption**: XOR32-based encryption/decryption of shellcode contents
-- **🔄 Memory Protection Cycling**: Alternating between `RW`/`NoAccess` and `RX` memory states  
-- **🎯 Sleep Hook Interception**: Leveraging `kernel32!Sleep` calls for timing control
-- **👻 Scanner Evasion**: Bypassing tools like [Moneta](https://github.com/forrest-orr/moneta) and [pe-sieve](https://github.com/hasherezade/pe-sieve)
+- **Dynamic Encryption**: XOR32-based encryption/decryption of shellcode contents
+- **Memory Protection Cycling**: Alternating between `RW`/`NoAccess` and `RX` memory states  
+- **Sleep Hook Interception**: Leveraging `kernel32!Sleep` calls for timing control
+- **Scanner Evasion**: Bypassing tools like [Moneta](https://github.com/forrest-orr/moneta) and [pe-sieve](https://github.com/hasherezade/pe-sieve)
 
-### 🎪 Live Demonstration
+### Live Demonstration
 
 When shellcode resides in `RW` or `NoAccess` memory pages, advanced memory scanners cannot detect or dump it for analysis:
 
@@ -92,14 +92,14 @@ graph TD
 
 **Detailed Process:**
 
-1. **🎯 Initialization**: Hook `kernel32!Sleep` with custom callback
-2. **💉 Injection**: Deploy shellcode via `VirtualAlloc` → `memcpy` → `CreateThread`
-3. **😴 Sleep Interception**: Custom `MySleep` callback triggers on sleep
-4. **🔐 Encryption Phase**: XOR32 encrypt shellcode + flip to `PAGE_READWRITE`
-5. **🧹 IOC Cleanup**: Temporarily unhook Sleep to avoid detection
-6. **⏰ Sleep Execution**: Call original `::Sleep` function
-7. **🔓 Decryption Phase**: Restore shellcode + flip back to `PAGE_EXECUTE_READ`
-8. **🔄 Re-hook**: Reinstall Sleep hook for next cycle
+1. **Initialization**: Hook `kernel32!Sleep` with custom callback
+2. **Injection**: Deploy shellcode via `VirtualAlloc` → `memcpy` → `CreateThread`
+3. **Sleep Interception**: Custom `MySleep` callback triggers on sleep
+4. **Encryption Phase**: XOR32 encrypt shellcode + flip to `PAGE_READWRITE`
+5. **IOC Cleanup**: Temporarily unhook Sleep to avoid detection
+6. **Sleep Execution**: Call original `::Sleep` function
+7. **Decryption Phase**: Restore shellcode + flip back to `PAGE_EXECUTE_READ`
+8. **Re-hook**: Reinstall Sleep hook for next cycle
 
 ### PAGE_NOACCESS Mode
 
@@ -119,9 +119,9 @@ graph TD
 ```
 
 **Key Advantages:**
-- **🚫 Complete Invisibility**: Shellcode appears as inaccessible memory
-- **⚡ Exception-Driven**: Automatic restoration on access attempts  
-- **🔒 Enhanced Security**: Even more difficult to detect than RW mode
+- **Complete Invisibility**: Shellcode appears as inaccessible memory
+- **Exception-Driven**: Automatic restoration on access attempts  
+- **Enhanced Security**: Even more difficult to detect than RW mode
 
 ## Quick Start
 
@@ -152,10 +152,10 @@ ShellcodeFluctuation.exe <shellcode_file> <fluctuation_mode>
 ```
 
 **Fluctuation Modes:**
-- **`-1`** - 📊 **Analysis Mode**: Load but don't inject (IOC baseline testing)
-- **`0`** - 🔍 **Standard Mode**: Inject without fluctuation (detection comparison)  
-- **`1`** - 🔄 **RW Mode**: Fluctuate between RW and RX protection
-- **`2`** - 🚫 **NoAccess Mode**: Fluctuate between NoAccess and RX protection
+- **`-1`** - **Analysis Mode**: Load but don't inject (IOC baseline testing)
+- **`0`** - **Standard Mode**: Inject without fluctuation (detection comparison)  
+- **`1`** - **RW Mode**: Fluctuate between RW and RX protection
+- **`2`** - **NoAccess Mode**: Fluctuate between NoAccess and RX protection
 
 **Example Usage:**
 ```bash
@@ -240,17 +240,17 @@ uint8_t trampoline[] = {
 
 ### Limitations & Warnings
 
-- **⚠️ Educational Purpose**: This is a research tool for educational and authorized testing only
-- **🎯 Cobalt Strike Specific**: Designed specifically for Beacon shellcodes using `Sleep`
-- **🔧 Hook Dependencies**: Requires `kernel32!Sleep` calls for operation
-- **🛡️ IOC Awareness**: Leaves minimal but detectable kernel32 modification traces
+- **Educational Purpose**: This is a research tool for educational and authorized testing only
+- **Cobalt Strike Specific**: Designed specifically for Beacon shellcodes using `Sleep`
+- **Hook Dependencies**: Requires `kernel32!Sleep` calls for operation
+- **IOC Awareness**: Leaves minimal but detectable kernel32 modification traces
 
 ### Responsible Usage
 
-- **✅ Authorized Testing**: Only use in authorized penetration testing environments
-- **✅ Red Team Exercises**: Appropriate for legitimate adversary simulation
-- **❌ Malicious Use**: Not intended for criminal activities or unauthorized access
-- **📚 Research**: Valuable for understanding modern evasion techniques
+- **Authorized Testing**: Only use in authorized penetration testing environments
+- **Red Team Exercises**: Appropriate for legitimate adversary simulation
+- **Malicious Use**: Not intended for criminal activities or unauthorized access
+- **Research**: Valuable for understanding modern evasion techniques
 
 ### Cleanup Considerations
 
