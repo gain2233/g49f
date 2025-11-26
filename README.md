@@ -2,16 +2,15 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://www.microsoft.com/)
-[![Architecture](https://img.shields.io/badge/Architecture-x86%20%7C%20x64-green.svg)](https://github.com/mgeeky/ShellcodeFluctuation)
+[![Architecture](https://img.shields.io/badge/Architecture-x86%20%7C%20x64-green.svg)](https://github.com/)
 [![Language](https://img.shields.io/badge/Language-C%2B%2B-orange.svg)](https://isocpp.org/)
-[![Security Research](https://img.shields.io/badge/Security-Research-red.svg)](https://github.com/mgeeky/ShellcodeFluctuation)
 
 > **A sophisticated proof-of-concept demonstrating advanced in-memory evasion techniques that cyclically encrypts and decrypts shellcode while fluctuating between different memory protection states to evade detection by memory scanners.**
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Key Features](#features)
+- [Features](#features)
 - [How It Works](#how-it-works)
   - [RW Fluctuation Mode](#rw-fluctuation-mode)
   - [PAGE_NOACCESS Mode](#page_noaccess-mode)
@@ -26,9 +25,7 @@
   - [Memory Protection Mechanics](#memory-protection-mechanics)
   - [Hook Implementation](#hook-implementation)
   - [Encryption Strategy](#encryption-strategy)
-- [Important Considerations](#️important-considerations)
 - [Educational Background](#educational-background)
-- [Defensive Implications](#️defensive-implications)
 - [References](#references)
 
 ## Overview
@@ -261,6 +258,10 @@ This technique builds upon foundational research in memory evasion:
 - [BeaconEye](https://github.com/CCob/BeaconEye) - Beacon configuration extractor
 - [ThreadStackSpoofer](https://github.com/mgeeky/ThreadStackSpoofer) - Thread call stack spoofing
 
+
+## License
+
+This project is licensed under the MIT License. For more information, see the [LICENSE file](LICENSE).
 
 ---
 
