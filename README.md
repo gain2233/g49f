@@ -11,29 +11,29 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Key Features](#-key-features)
-- [How It Works](#-how-it-works)
+- [Key Features](#features)
+- [How It Works](#how-it-works)
   - [RW Fluctuation Mode](#rw-fluctuation-mode)
   - [PAGE_NOACCESS Mode](#page_noaccess-mode)
-- [Quick Start](#-quick-start)
+- [Quick Start](#quick-start)
   - [Prerequisites](#prerequisites)
   - [Building](#building)
   - [Usage](#usage)
-- [Detection Analysis](#-detection-analysis)
+- [Detection Analysis](#detection-analysis)
   - [Moneta Scanner Results](#moneta-scanner-results)
   - [PE-Sieve Analysis](#pe-sieve-analysis)
-- [Technical Deep Dive](#-technical-deep-dive)
+- [Technical Deep Dive](#technical-deep-dive)
   - [Memory Protection Mechanics](#memory-protection-mechanics)
   - [Hook Implementation](#hook-implementation)
   - [Encryption Strategy](#encryption-strategy)
-- [Important Considerations](#️-important-considerations)
-- [Educational Background](#-educational-background)
+- [Important Considerations](#️important-considerations)
+- [Educational Background](#educational-background)
 - [Defensive Implications](#️defensive-implications)
 - [References](#references)
 
 ## Overview
 
-**Shellcode Fluctuation** is an advanced cybersecurity research tool that demonstrates sophisticated memory evasion techniques used in modern malware and red team operations. The tool implements a novel approach to hiding shellcode in memory by:
+**Shellcode Fluctuation** is an advanced cybersecurity tool that demonstrates modern malware and sophisticated memory evasion techniques. This tool implements the following new approach to hide shellcode in memory:
 
 - **Dynamic Encryption**: XOR32-based encryption/decryption of shellcode contents
 - **Memory Protection Cycling**: Alternating between `RW`/`NoAccess` and `RX` memory states  
@@ -51,24 +51,15 @@ When shellcode resides in `RW` or `NoAccess` memory pages, advanced memory scann
 
 ![Comparison](images/comparison.png)
 
-## Key Features
+## Features
 
-### Core Capabilities
 - **Multi-Mode Operation**: Support for RW and PAGE_NOACCESS fluctuation modes
 - **Self-Aware Shellcode**: Automatic detection and management of shellcode boundaries
 - **Hook Management**: Intelligent hooking/unhooking to minimize IOCs
-- **Cross-Architecture**: Compatible with both x86 and x64 Windows systems
-
-### Evasion Techniques
 - **Memory Scanner Bypass**: Evades Moneta, PE-Sieve, and similar tools
 - **IOC Minimization**: Reduces detectable indicators of compromise
 - **Dynamic Protection**: Real-time memory protection state changes
 - **Encryption Cycling**: Continuous encryption/decryption during sleep cycles
-
-### Target Compatibility
-- **Primary**: Cobalt Strike Beacon shellcodes
-- **Architecture**: Windows x86/x64 platforms
-- **Requirements**: Shellcodes that utilize `kernel32!Sleep` for timing
 
 ## How It Works
 
@@ -127,28 +118,22 @@ graph TD
 
 ### Prerequisites
 
-- **OS**: Windows 10/11 (x86/x64)
-- **Compiler**: Visual Studio 2019+ or compatible C++ compiler
+- **OS**: Windows 10/11
+- **Compiler**: Visual Studio 2022
 - **Target**: Cobalt Strike Beacon or compatible shellcode
 
 ### Building
 
-```bash
-# Clone the repository
-git clone https://github.com/mgeeky/ShellcodeFluctuation.git
-cd ShellcodeFluctuation
+- Download the project to your computer.
 
-# Open in Visual Studio
-start ShellcodeFluctuation.sln
+- Open the solution file (ShellcodeFluctuation.sln).
 
-# Or build via command line
-msbuild ShellcodeFluctuation.sln /p:Configuration=Release /p:Platform=x64
-```
+- Select **Build Solution** from the **Build** menu.
 
 ### Usage
 
 ```bash
-ShellcodeFluctuation.exe <shellcode_file> <fluctuation_mode>
+ShellcodeFluctuation.exe shellcode_file fluctuation_mode
 ```
 
 **Fluctuation Modes:**
@@ -236,23 +221,8 @@ uint8_t trampoline[] = {
 - **Performance**: Optimized 32-bit operations with byte-level fallback
 - **Coverage**: Complete shellcode region encryption
 
-## Important Considerations
 
-### Limitations & Warnings
-
-- **Educational Purpose**: This is a research tool for educational and authorized testing only
-- **Cobalt Strike Specific**: Designed specifically for Beacon shellcodes using `Sleep`
-- **Hook Dependencies**: Requires `kernel32!Sleep` calls for operation
-- **IOC Awareness**: Leaves minimal but detectable kernel32 modification traces
-
-### Responsible Usage
-
-- **Authorized Testing**: Only use in authorized penetration testing environments
-- **Red Team Exercises**: Appropriate for legitimate adversary simulation
-- **Malicious Use**: Not intended for criminal activities or unauthorized access
-- **Research**: Valuable for understanding modern evasion techniques
-
-### Cleanup Considerations
+## Cleanup Considerations
 
 **Important**: Avoid unhooking `kernel32.dll` during operation as this will prevent the fluctuation mechanism from functioning. If using tools like `unhook-bof`, exclude kernel32:
 
@@ -265,35 +235,16 @@ beacon> unhook kernel32
 
 This technique builds upon foundational research in memory evasion:
 
-### Historical Context
+### Context
 
 - **[Gargoyle](https://github.com/JLospinoso/gargoyle)** by Josh Lospinoso - Original memory protection cycling concept
-- **[ORCA666's 0x41](https://github.com/ORCA666/0x41)** - PAGE_NOACCESS implementation inspiration
+- **[ORCA666's 0x41](https://github.com/ORCA666/0x41)** - PAGE_NOACCESS
 - **[ThreadStackSpoofer](https://github.com/mgeeky/ThreadStackSpoofer)** - Complementary thread-level evasion
 
 ### Recommended Reading
 
 1. **[Gargoyle: Memory Scanning Evasion](https://lospi.net/security/assembly/c/cpp/developing/software/2017/03/04/gargoyle-memory-analysis-evasion.html)**
-2. **[Bypassing Memory Scanners with Cobalt Strike](https://labs.f-secure.com/blog/experimenting-bypassing-memory-scanners-with-cobalt-strike-and-gargoyle/)**
 3. **[Masking Malicious Memory Artifacts](https://www.forrest-orr.net/post/malicious-memory-artifacts-part-i-dll-hollowing)** by Forrest Orr
-
-## Defensive Implications
-
-### Detection Strategies
-
-**For Blue Teams and Security Researchers:**
-
-- **Memory Working Set Analysis**: Monitor for unusual private memory allocations within image regions
-- **Hook Detection**: Implement kernel32 integrity checking
-- **Behavioral Analysis**: Look for patterns of memory protection changes
-- **VEH Monitoring**: Track Vectored Exception Handler registrations
-
-### IOC Patterns
-
-- Modified code regions in kernel32.dll (minimal but detectable)
-- Unusual memory protection change patterns
-- Private memory allocations within system library regions
-- Frequent VirtualProtect API calls with protection cycling
 
 
 ## References
@@ -317,8 +268,8 @@ This technique builds upon foundational research in memory evasion:
 
 **⚠️ DISCLAIMER ⚠️**
 
-*This tool is provided for educational and authorized security testing purposes only. Users are responsible for complying with applicable laws and regulations. The author assumes no liability for misuse or damage caused by this software.*
+*This tool is provided for educational and authorized security testing purposes only. The author assumes no liability for misuse or damage caused by this software.*
 
-**🔒 Use Responsibly | 🎓 Learn Continuously | 🛡️ Defend Effectively**
+** Learn Continuously **
 
 </div>
