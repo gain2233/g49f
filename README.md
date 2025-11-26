@@ -270,6 +270,6 @@ This technique builds upon foundational research in memory evasion:
 
 *This tool is provided for educational and authorized security testing purposes only. The author assumes no liability for misuse or damage caused by this software.*
 
-** Learn Continuously **
+**Learn Continuously**
 
 </div>
